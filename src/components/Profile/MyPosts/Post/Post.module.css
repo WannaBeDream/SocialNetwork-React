@@ -1,5 +1,13 @@
 .item {
-  color: greenyellow;
+  color: black;
+  padding: 15px;
+  margin: 15px;
+  border: 1px solid black;
+  border-radius: 10%;
+  background: white;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  grid-gap: 2px;
 }
 
 .item img {
@@ -7,3 +15,4 @@
   height: 50px;
   border-radius: 30px;
 }
+
