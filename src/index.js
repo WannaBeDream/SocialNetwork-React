@@ -10,7 +10,7 @@ import { addPost, updateNewPostText } from './myRedux/state'
 
 
 
-let rerenderEntireTree = () => {
+let rerenderEntireTree = (state) => {
 
     ReactDOM.render(
         <BrowserRouter>
@@ -18,7 +18,7 @@ let rerenderEntireTree = () => {
         </BrowserRouter>
         , document.getElementById('root'));
 }
-rerenderEntireTree();
+rerenderEntireTree(state);
 
 subscribe(rerenderEntireTree); // подписал наблюдателя ReactDom.render тем самым связав state и методы 
 
