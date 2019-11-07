@@ -1,4 +1,4 @@
-let rerenderEntireTree = () => { // заменил эту функцию на функцию из index.js использую callback
+let rerenderEntireTree = () => { // заменил эту функцию на функцию из index.js использую callbacks
     console.log('state was changed')
 }
 

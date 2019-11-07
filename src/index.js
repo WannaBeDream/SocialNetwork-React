@@ -18,7 +18,7 @@ let rerenderEntireTree = (state) => {
         </BrowserRouter>
         , document.getElementById('root'));
 }
-rerenderEntireTree(state);
+rerenderEntireTree(state); // первая отрисовка для взаимодействия чтобы после подключить observer 
 
 subscribe(rerenderEntireTree); // подписал наблюдателя ReactDom.render тем самым связав state и методы 
 
