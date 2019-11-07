@@ -11,10 +11,7 @@ const MyPosts = (props) => {
 
 
     let addPost = () => {
-        
-        let text = newPostElement.current.value;
-        if(text.length > 0)
-        props.addPost(text);
+        props.addPost();
         props.updateNewPostText(''); // зануление
     }
 

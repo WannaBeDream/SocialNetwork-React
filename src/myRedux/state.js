@@ -33,6 +33,8 @@ let state = {
     },
 }
 
+window.state = state //проверка  в браузере  BBL чтобі узнать где фиксируются данные, сейчас в state.profilePage.newPostText , но это не лучший пример т.к. используется круговая зависимость хоть и через render.js
+
 export let addPost = () => {
     let newPost = {
         id: state.profilePage.posts.length,
