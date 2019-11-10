@@ -11,13 +11,19 @@ const MyPosts = (props) => {
 
 
     let addPost = () => {
-        props.addPost(); // записываю значение из state.profilePage.newPostText в state.profilePage.posts
-        props.updateNewPostText(''); // зануление (изменение в state.profilePage.newPostText)
+        // props.addPost(); // записываю значение из state.profilePage.newPostText в state.profilePage.posts
+        let newText= '';
+        let actionAdd = {type:'ADD-POST'};
+        let actionUpdate = {type:'UPDATE-NEW-POST-TEXT', newText };
+        props.dispatch(actionAdd);
+        props.dispatch(actionUpdate); // зануление (изменение в state.profilePage.newPostText)
     }
 
     let onPostChange = () => {   // меняю state.profilePage.newPostText
-        let text = newPostElement.current.value;
-        props.updateNewPostText(text); // state меняется при каждом нажатии и сохраняется в state.profilePage.newPostText
+        let newText = newPostElement.current.value;
+        let action = {type:'UPDATE-NEW-POST-TEXT', newText };
+        props.dispatch(action);
+        // props.updateNewPostText(text); // state меняется при каждом нажатии и сохраняется в state.profilePage.newPostText
         
     }
 
