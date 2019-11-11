@@ -14,11 +14,11 @@ import { BrowserRouter } from "react-router-dom";
 //                  4) вызов наблюдателя(observer) который заменяет rerenderEntireTree из index.js на  rerenderEntireTree из state.js при помощи callbacks 
 //                  P.S. про перезапись observer не точно
 
-let rerenderEntireTree = (state) => {
+let rerenderEntireTree = (state) => {  // Варианты: 1)Прокидываю state через пропсы для Dialogs; 2)Прокидываю отдельно Dispatch и state для MyPosts
 
     ReactDOM.render(
         <BrowserRouter>
-            <App appState={state} dispatch={store.dispatch.bind(store)} />
+            <App appState={state} dispatch={store.dispatch.bind(store)} store={store}/> 
         </BrowserRouter>
         , document.getElementById('root'));
 }

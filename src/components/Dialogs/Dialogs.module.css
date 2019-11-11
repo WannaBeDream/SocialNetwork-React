@@ -21,12 +21,12 @@
     padding: 10px;
 }
 
-.messages div {
+/* .messages div {
     margin: 5px;
     padding: 5px;
     border: 2px solid black;
     border-radius: 20%;
-}
+} */
 
 .messages .message {
     color: white;
@@ -36,8 +36,11 @@
     margin: 10px;
     padding: 10px;
     border: 1px solid black;
-    border-radius: 50%;
     text-align: center;
+}
+
+.dialogsItems .dialog {
+    border-radius: 50%;
 }
 
 .messages .dialog {

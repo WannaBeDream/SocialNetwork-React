@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../myRedux/state"
+import {addPostCreator, updateNewPostTextCreator} from "../../../myRedux/state"
 
 
 const MyPosts = props => {
@@ -16,14 +16,14 @@ const MyPosts = props => {
     // let newText= '';
     // let actionAdd = {type:'ADD-POST'};
     // let actionUpdate = {type:'UPDATE-NEW-POST-TEXT', newText };
-    props.dispatch(addPostActionCreator());
+    props.dispatch(addPostCreator());
     // props.dispatch(actionUpdate); // зануление (изменение в state.profilePage.newPostText)
   };
 
   let onPostChange = () => {
     // меняю state.profilePage.newPostText
     let text = newPostElement.current.value;
-    let action = updateNewPostTextActionCreator(text);
+    let action = updateNewPostTextCreator(text);
     props.dispatch(action);
     // props.updateNewPostText(text); // state меняется при каждом нажатии и сохраняется в state.profilePage.newPostText
   };
