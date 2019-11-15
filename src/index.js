@@ -1,5 +1,5 @@
 import * as serviceWorker from './serviceWorker';
-import store from './myRedux/state'
+import store from './myRedux/redux-store'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -24,7 +24,10 @@ let rerenderEntireTree = (state) => {  // Варианты: 1)Прокидыва
 }
 rerenderEntireTree(store.getState()); // первая отрисовка для взаимодействия чтобы после подключить observer 
 
-store.subscribe(rerenderEntireTree); // подписал наблюдателя ReactDom.render тем самым связав state и методы 
+store.subscribe(()=> {
+    let state = store.getState(); // для того чтобы state передался стором(store)
+    rerenderEntireTree(state);   // redux store не передает state при уведомлении подписчиков 
+}); 
 
 
 // If you want your app to work offline and load faster, you can change

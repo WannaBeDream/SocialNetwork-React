@@ -1,6 +1,9 @@
 const UPDATE_SOMETHING = 'UPDATE-SOMETHING'
 
-const sidebarReducer = (state, action) => {
+let initialState = {};
+
+
+const sidebarReducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_SOMETHING:
 
