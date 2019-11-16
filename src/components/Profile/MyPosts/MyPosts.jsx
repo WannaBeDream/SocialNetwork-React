@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {addPostCreator, updateNewPostTextCreator} from "../../../myRedux/profile-reducer"
+
 
 
 const MyPosts = props => {
@@ -11,21 +11,14 @@ const MyPosts = props => {
     <Post message={p.message} likesCount={p.likesCount} />
   ));
 
-  let addPost = () => {
-    // props.addPost(); // записываю значение из state.profilePage.newPostText в state.profilePage.posts
-    // let newText= '';
-    // let actionAdd = {type:'ADD-POST'};
-    // let actionUpdate = {type:'UPDATE-NEW-POST-TEXT', newText };
-    props.dispatch(addPostCreator());
-    // props.dispatch(actionUpdate); // зануление (изменение в state.profilePage.newPostText)
+  let onAddPost = () => {
+    props.addPost(); // записываю значение из state.profilePage.newPostText в state.profilePage.posts
   };
 
   let onPostChange = () => {
     // меняю state.profilePage.newPostText
     let text = newPostElement.current.value;
-    let action = updateNewPostTextCreator(text);
-    props.dispatch(action);
-    // props.updateNewPostText(text); // state меняется при каждом нажатии и сохраняется в state.profilePage.newPostText
+    props.updateNewPostText(text); 
   };
 
   return (
@@ -40,7 +33,7 @@ const MyPosts = props => {
           ></textarea>
         </div>
         <div>
-          <button onClick={addPost}>Add post</button>
+          <button onClick={onAddPost}>Add post</button>
         </div>
       </div>
       <div className={s.posts}>{postsElements}</div>
