@@ -4,27 +4,35 @@ import {
   updateNewPostTextCreator
 } from "../../../myRedux/profile-reducer";
 import MyPosts from "./MyPosts";
+import StoreContext from "../../../StoreContext";
 
-const MyPostsContainer = props => {
-  let state = props.store.getState();
-
-  let onAddPost = () => {
-    props.store.dispatch(addPostCreator());
-  };
-
-  let onPostChange = text => {
-    let action = updateNewPostTextCreator(text);
-    props.store.dispatch(action);
-    // props.updateNewPostText(text); // state меняется при каждом нажатии и сохраняется в state.profilePage.newPostText
-  };
-
+const MyPostsContainer = () => {
+ 
   return (
-    <MyPosts
-      updateNewPostText={onPostChange}
-      addPost={onAddPost}
-      posts={state.profilePage.posts}
-      newPostText={state.profilePage.newPostText}
-    />
+    <StoreContext.Consumer>
+      {store => {
+        let state = store.getState();
+
+        let onAddPost = () => {
+          store.dispatch(addPostCreator());
+        };
+
+        let onPostChange = text => {
+          let action = updateNewPostTextCreator(text);
+          store.dispatch(action);
+          // state меняется при каждом нажатии и сохраняется в state.profilePage.newPostText
+        };
+
+        return (
+          <MyPosts
+            updateNewPostText={onPostChange}
+            addPost={onAddPost}
+            posts={state.profilePage.posts}
+            newPostText={state.profilePage.newPostText}
+          />
+        );
+      }}
+    </StoreContext.Consumer>
   );
 };
 
