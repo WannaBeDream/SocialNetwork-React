@@ -4,36 +4,31 @@ import {
   updateNewPostTextCreator
 } from "../../../myRedux/profile-reducer";
 import MyPosts from "./MyPosts";
-import StoreContext from "../../../StoreContext";
+import { connect } from "react-redux";
 
-const MyPostsContainer = () => {
- 
-  return (
-    <StoreContext.Consumer>
-      {store => {
-        let state = store.getState();
-
-        let onAddPost = () => {
-          store.dispatch(addPostCreator());
-        };
-
-        let onPostChange = text => {
-          let action = updateNewPostTextCreator(text);
-          store.dispatch(action);
-          // state меняется при каждом нажатии и сохраняется в state.profilePage.newPostText
-        };
-
-        return (
-          <MyPosts
-            updateNewPostText={onPostChange}
-            addPost={onAddPost}
-            posts={state.profilePage.posts}
-            newPostText={state.profilePage.newPostText}
-          />
-        );
-      }}
-    </StoreContext.Consumer>
-  );
+// есть доступ к стейту но не к стору
+let mapStateToProps = state => {
+  return {
+    posts: state.profilePage.posts,
+    newPostText: state.profilePage.newPostText
+  };
 };
+
+// store.dispatch.bind(state); ~
+let mapDispatchToProps = dispatch => {
+  return {
+    addPost: () => {
+      dispatch(addPostCreator());
+    },
+    updateNewPostText: text => {
+      let action = updateNewPostTextCreator(text);
+      dispatch(action);
+    }
+  };
+};
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+// connect возвращает новую контеййнерную компоненту
+// первые два аргумента connect возвращают обьекты которые попадают в пропсы
 
 export default MyPostsContainer;
