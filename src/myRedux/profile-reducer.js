@@ -21,17 +21,22 @@ const profileReducer = (state = initialState, action) => {
                 message: state.newPostText,
                 likesCount: 0,
             };
-            let stateCopy = {...state};
-            stateCopy.posts = [...state.posts];   // создал копию массива для работы метода сonnect(для сравнения), чтобы перерендер был
-            stateCopy.posts.push(newPost);
-            stateCopy.newPostText = '';
-            return stateCopy;
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText: '',
+
+            };
+            // stateCopy.posts = [...state.posts];   // создал копию массива для работы метода сonnect(для сравнения), чтобы перерендер был
+            // stateCopy.posts.push(newPost);
+            // stateCopy.newPostText = '';
+            // return stateCopy;
         }
         case UPDATE_NEW_POST_TEXT: {
-            let stateCopy = {...state};
+            return {...state, newPostText: action.newText};
 
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+            // stateCopy.newPostText = action.newText;
+            // return stateCopy;
         }
         default:
             return state;
