@@ -7,8 +7,6 @@ import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import {Provider} from 'react-redux';
 
-
-let rerenderEntireTree = () => {  
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
@@ -16,12 +14,7 @@ let rerenderEntireTree = () => {
             </Provider >
         </BrowserRouter>
         , document.getElementById('root'));
-}
-rerenderEntireTree(); // первая отрисовка для взаимодействия чтобы после подключить observer 
 
-store.subscribe(() => {
-    rerenderEntireTree();   // redux store не передает state при уведомлении подписчиков 
-});
 
 
 // If you want your app to work offline and load faster, you can change

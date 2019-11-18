@@ -14,21 +14,25 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
 
-    switch (action.type) {
-        case ADD_POST:
+    switch (action.type) {  // сделал reducer чистой функцией 
+        case ADD_POST: {
             let newPost = {
                 id: state.posts.length,
                 message: state.newPostText,
                 likesCount: 0,
-            }
-            state.posts.push(newPost);   // this._state.profilePage заменил на state
-            state.newPostText = '';
-            return state;
+            };
+            let stateCopy = {...state};
+            stateCopy.posts = [...state.posts];   // создал копию массива для работы метода сonnect(для сравнения), чтобы перерендер был
+            stateCopy.posts.push(newPost);
+            stateCopy.newPostText = '';
+            return stateCopy;
+        }
+        case UPDATE_NEW_POST_TEXT: {
+            let stateCopy = {...state};
 
-        case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText;
-            return state;
-
+            stateCopy.newPostText = action.newText;
+            return stateCopy;
+        }
         default:
             return state;
     }

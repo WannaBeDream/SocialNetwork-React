@@ -22,16 +22,35 @@ let initialState = {
 
 
 const dialogsReducer = (state = initialState, action) => {
+
+    let stateCopy;
+
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessageBody = action.newBody;  // this._state.dialogsPage
-            return state;
+            stateCopy = {
+                ...state,
+                newMessageBody: action.newBody
+            };
+        // не использую потому что в mapStateTоProps запрашивается только state.DialogsPage
+            return stateCopy;
+        // state.newMessageBody = action.newBody;  // this._state.dialogsPage
+        // return state;
 
         case SEND_MESSAGE:
+            // let body = state.newMessageBody;
+            // state.newMessageBody = '';
+            // state.messages.push({ id: 6, message: body })
+            // return state;
             let body = state.newMessageBody;
-            state.newMessageBody = '';
-            state.messages.push({ id: 6, message: body })
-            return state;
+
+            stateCopy = {
+                ...state,
+                newMessageBody: '',                //именно в таком порядке
+                messages: [...state.messages, { id: state.messages.length + 1, message: body }],
+            };
+            // stateCopy.messages.push({ id: 6, message: body }) 
+
+            return stateCopy;
 
         default:
             return state;

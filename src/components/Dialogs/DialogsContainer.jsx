@@ -10,7 +10,7 @@ import {connect} from 'react-redux';
 
 let mapStateToProps = (state) => { // есть доступ к стейту но не к стору
   return {
-    dialogsPage: state.dialogsPage
+    dialogsPage: state.dialogsPage  // когда эта часть стейта изменится метод connect перерисует компоненту
   }
 }
 let mapDispatchToProps = (dispatch) => {  // store.dispatch.bind(state); ~
