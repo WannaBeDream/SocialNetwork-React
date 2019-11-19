@@ -44,5 +44,13 @@
 }
 
 .messages .dialog {
-    background: white;
+    color: white;
+    padding: 15px;
+    margin: 15px;
+    border: 1px solid white;
+    border-radius: 10%;
+}
+
+.containerHelperForTextArea {
+    grid-column: 1/3;
 }

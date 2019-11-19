@@ -2,8 +2,6 @@ import React from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
-
-
 const MyPosts = props => {
   let newPostElement = React.createRef();
 
@@ -18,7 +16,7 @@ const MyPosts = props => {
   let onPostChange = () => {
     // меняю state.profilePage.newPostText
     let text = newPostElement.current.value;
-    props.updateNewPostText(text); 
+    props.updateNewPostText(text);
   };
 
   return (
@@ -26,14 +24,22 @@ const MyPosts = props => {
       <h3>My posts</h3>
       <div>
         <div>
-          <textarea
-            onChange={onPostChange}
-            ref={newPostElement}
-            value={props.newPostText}
-          ></textarea>
+          <div className="form-group ml-5 mr-5 ">
+            <textarea
+            
+              onChange={onPostChange}
+              ref={newPostElement}
+              value={props.newPostText}
+              className="form-control"
+              rows="3"
+              cols="1"
+            ></textarea>
+          </div>
         </div>
         <div>
-          <button onClick={onAddPost}>Add post</button>
+          <button onClick={onAddPost} type="button" className="btn btn-primary">
+            Add post
+          </button>
         </div>
       </div>
       <div className={s.posts}>{postsElements}</div>

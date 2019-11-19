@@ -3,9 +3,7 @@ import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
-
 const Dialogs = props => {
-
   let state = props.dialogsPage;
   let newMessageBody = state.newMessageBody;
 
@@ -19,7 +17,7 @@ const Dialogs = props => {
   let onSendMessageClick = () => {
     props.sendMessage();
   };
-  let onNewMessageChange = (event) => {
+  let onNewMessageChange = event => {
     let body = event.target.value;
     props.updateNewMessageBody(body);
   };
@@ -30,17 +28,22 @@ const Dialogs = props => {
       <div className={s.messages}>
         <div>{messagesElements}</div>
       </div>
-      <div>
-        <div>
+      <div className={s.containerHelperForTextArea}>
+        <div className="form-group ml-5 mr-5 ">
           <textarea
             value={newMessageBody}
             // ref={newMessageElement}
             placeholder="Enter your message"
             onChange={onNewMessageChange}
+            className="form-control"
+            rows="3"
+            cols="1"
           ></textarea>
         </div>
         <div>
-          <button onClick={onSendMessageClick}>send message</button>
+          <button onClick={onSendMessageClick} className="btn btn-primary">
+            send message
+          </button>
         </div>
       </div>
     </div>

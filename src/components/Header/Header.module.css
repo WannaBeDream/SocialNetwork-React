@@ -1,6 +1,8 @@
 .header {
     grid-area: h;
-    background-image: url(../../assets/images/Header_Background.jpg);
+
+    background-image:  url("https://templates.utah.edu/_main-v2/_images/header/background/grey.jpg");
+
 }
 
 .header img {

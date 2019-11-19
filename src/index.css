@@ -8,7 +8,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+
+::-webkit-scrollbar {
+  width: 0px;
+  }
+
+
+  .btn {
+    display: block;
+    width: 300px;
+    background: black;
+    border:1px solid white;
+    margin: 10px auto;
 }
+  .btn:hover {
+    background: white;
+    border: 1px solid black;
+    color:black;
+}
+
