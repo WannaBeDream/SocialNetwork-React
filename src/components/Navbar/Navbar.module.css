@@ -1,39 +1,50 @@
 .nav {
-    grid-area: n;
-    background-color: #0E0E0E;
-    padding: 10px;
+  grid-area: n;
+  background-color: #0e0e0e;
+  padding: 10px;
 }
 
 .item a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 .item a.activeLink {
-    color: gold;
+  color: #ffffff;
+  text-shadow: #fff 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
+    #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
+    #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
 }
 
 
-.ava img{
-    width: 50px;
-    height: 50px;
-    border-radius: 30px;
-  }
-  
-.ava {
-    display: flex;
-    width: 50px;
-    height: 50px;
-    border-radius: 30px;
-    margin: 10px auto;
-  }
-  
-  .item {
-      text-align: center;
-  }
+.ava img {
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+}
 
-  .item div {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-  }
+.ava {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+  margin: 10px auto;
+}
+
+.item {
+  margin: 10px auto;
+  text-align: center;
+}
+
+.item h3 {
+  color: #0e0e0e;
+  text-shadow: 2px 2px 0 white, 2px -2px 0 white, -2px 2px 0 white,
+    -2px -2px 0 white, 2px 0px 0 white, 0px 2px 0 white, -2px 0px 0 white,
+    0px -2px 0 white, 2px 2px 1px black;
+}
+
+.item div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
