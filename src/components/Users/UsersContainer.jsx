@@ -11,17 +11,21 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        follow: userId => {
+        follow: (userId) => {
+                                                    // TODO
             dispatch(followAC(userId))
         },
-        unfollow: userId => {
+        unfollow: (userId) => {
+                                                    // TODO
             dispatch(unfollowAC(userId))
         },
-        setUsers: users => {
+        setUsers: (users) => {
             dispatch(setUsersAC(users))
         }
     }
 }
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(Users);
+let UsersContainer = connect(mapStateToProps,mapDispatchToProps)(Users);
+
+export default UsersContainer;

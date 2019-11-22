@@ -13,13 +13,14 @@ let initialState = {
 };
 
 const usersReducer = (state = initialState, action) => {
-
+                                                                // TODO
     switch (action.type) {
         case FOLLOW_FRIEND:
             return {
                 ...state,
                 users: state.users.map((user) => {
                     if (user.id === action.userId) {
+                                                            // TODO 
                         return { ...user, followed: true }
                     }
                     return user;
@@ -39,7 +40,7 @@ const usersReducer = (state = initialState, action) => {
             };
         case SET_USERS: {
             return { ...state, users: [...state.users, ...action.users] }
-        }
+        };
         default:
             return state;
     }
