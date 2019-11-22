@@ -4,23 +4,16 @@ const SET_USERS = "SET-USERS";
 
 let initialState = {
     users:
-        [
-            { id: 1, followed: false, photoUrl: 'https://i2.wp.com/info-4all.ru/images/ecd5f29ff548715dc855639ffecfdfb7.png', fullName: 'Vasya', status: 'Im good man', location: { city: 'Dnepr', country: 'Ukraine' } },
-            { id: 2, followed: true, photoUrl: 'https://i2.wp.com/info-4all.ru/images/ecd5f29ff548715dc855639ffecfdfb7.png', fullName: 'Petya', status: 'Ho-ho-ho', location: { city: 'Kiev', country: 'Ukraine' } },
-            { id: 3, followed: false, photoUrl: 'https://i2.wp.com/info-4all.ru/images/ecd5f29ff548715dc855639ffecfdfb7.png', fullName: 'Denis', status: 'Dangerous', location: { city: 'Moscov', country: 'Russia' } },
-
-        ],
+        [],
 };
 
 const usersReducer = (state = initialState, action) => {
-                                                                // TODO
     switch (action.type) {
         case FOLLOW_FRIEND:
             return {
                 ...state,
                 users: state.users.map((user) => {
                     if (user.id === action.userId) {
-                                                            // TODO 
                         return { ...user, followed: true }
                     }
                     return user;
