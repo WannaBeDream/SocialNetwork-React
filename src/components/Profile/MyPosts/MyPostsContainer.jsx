@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  addPostCreator,
-  updateNewPostTextCreator
+  addPost,
+  updateNewPostText
 } from "../../../myRedux/profile-reducer";
 import MyPosts from "./MyPosts";
 import { connect } from "react-redux";
@@ -14,20 +14,29 @@ let mapStateToProps = state => {
   };
 };
 
-// store.dispatch.bind(state); ~
-let mapDispatchToProps = dispatch => {
-  return {
-    addPost: () => {
-      dispatch(addPostCreator());
-    },
-    updateNewPostText: text => {
-      let action = updateNewPostTextCreator(text);
-      dispatch(action);
-    }
-  };
-};
+// store.dispatch.bind(state); ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// let mapDispatchToProps = dispatch => {
+//   return {
+//     addPost: () => {
+//       dispatch(addPostCreator());
+//     },
+//     updateNewPostText: text => {
+//       let action = updateNewPostTextCreator(text);
+//       dispatch(action);
+//     }
+//   };
+// };
 
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+const MyPostsContainer = connect(mapStateToProps, 
+    {
+    addPost,
+    updateNewPostText
+    }
+  )(MyPosts);
+
+
+
+
 // connect возвращает новую контеййнерную компоненту
 // первые два аргумента connect возвращают обьекты которые попадают в пропсы
 
