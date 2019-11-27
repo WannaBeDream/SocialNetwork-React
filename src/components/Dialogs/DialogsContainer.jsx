@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  updateNewMessageBodyCreator,
-  sendMessageCreator
+  updateNewMessageBody,
+  sendMessage
 } from "../../myRedux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from 'react-redux';
@@ -13,17 +13,26 @@ let mapStateToProps = (state) => { // есть доступ к стейту но
     dialogsPage: state.dialogsPage  // когда эта часть стейта изменится метод connect перерисует компоненту
   }
 }
-let mapDispatchToProps = (dispatch) => {  // store.dispatch.bind(state); ~
-  return {
-    updateNewMessageBody: (body) => {
-      dispatch(updateNewMessageBodyCreator(body));
-    },
-    sendMessage: () => {
-      dispatch(sendMessageCreator());
-    },
-  }
-}
 
-const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs); // connect возвращает новую контеййнерную компоненту
+// // store.dispatch.bind(state); ~
+// let mapDispatchToProps = (dispatch) => {  
+//   return {
+//     updateNewMessageBody: (body) => {
+//       dispatch(updateNewMessageBodyCreator(body));
+//     },
+//     sendMessage: () => {
+//       dispatch(sendMessageCreator());
+//     },
+//   }
+// }
+
+const DialogsContainer = connect(mapStateToProps,
+  {
+    updateNewMessageBody,
+    sendMessage
+  }
+  )(Dialogs); 
+
+// connect возвращает новую контеййнерную компоненту
 // первые два аргумента connect возвращают обьекты которые попадают в пропсы
 export default DialogsContainer;
