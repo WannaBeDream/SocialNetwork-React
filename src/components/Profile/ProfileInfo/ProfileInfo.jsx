@@ -16,6 +16,21 @@ const ProfileInfo = (props) => {                // TODO
             </div>
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large} alt="404"/>  
+                <div>
+                    <div>
+                    {props.profile.fullName}
+                    </div>
+                    <div>
+                    {props.profile.lookingForAJob}
+                    </div>
+                    <div>
+                    {props.profile.lookingForAJobDescription}
+                    </div>
+                    <div>
+                        <a href={props.profile.contacts.github}>{props.profile.contacts.github}</a> 
+                    </div>
+
+                </div>
                 ava + description
             </div>
         </div>
