@@ -29,9 +29,7 @@ const ProfileInfo = (props) => {                // TODO
                     <div>
                         <a href={props.profile.contacts.github}>{props.profile.contacts.github}</a> 
                     </div>
-
                 </div>
-                ava + description
             </div>
         </div>
     )
