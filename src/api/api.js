@@ -1,4 +1,5 @@
 import * as axios from 'axios';
+import { getMaxListeners } from 'cluster';
 
 
 
@@ -17,5 +18,14 @@ export const usersAPI = {
           .then(response => {
               return response.data;
           });
-      }
+      },
+    userUnfollow(userId) {
+        axios.delete(`follow/${userId}`)
+    },
+    userFollow(userId) {
+        axios.delete(`follow/${userId}`)
+    }
+    
 }
+
+
