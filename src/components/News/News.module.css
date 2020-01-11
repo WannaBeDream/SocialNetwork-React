@@ -1,0 +1,14 @@
+.newsImage {
+    width: 100px;
+    height: 100px;
+}
+
+
+span {
+    color: white;
+}
+
+.selectedPage {
+    color: red;
+    font-weight: bold;
+}

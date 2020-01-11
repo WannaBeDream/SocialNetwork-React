@@ -1,29 +1,30 @@
 import React from "react";
 import { connect } from "react-redux";
-import { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleFollowingProgress } from "../../myRedux/users-reducer";
-import Users from "./Users";
+import { setNews, setCurrentNewsPage, setTotalNewsCount, toggleIsFetching } from "../../myRedux/news-reducer";
+import News from "./News";
 import Preloader from './../common/Preloader/Preloader';
-import {usersAPI} from './../../api/api';
+import {newsAPI} from './../../api/newsApi';
 
-class UsersAPIComponent extends React.Component {
+class NewsAPIComponent extends React.Component {
 
+ 
   componentDidMount() {
     this.props.toggleIsFetching(true);  
-    usersAPI.getUsers(this.props.currentPage,this.props.pageSize)
+    newsAPI.getNews(this.props.currentNewsPage,this.props.pageSize)
               .then(data => {
               this.props.toggleIsFetching(false);  
-              this.props.setUsers(data.items);
-              this.props.setTotalUsersCount(data.totalCount)
+              this.props.setNews(data.articles);
+              this.props.setTotalNewsCount(data.totalResults)
           });
   }
 
   onPageChanged = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber);
+    this.props.setCurrentNewsPage(pageNumber);
     this.props.toggleIsFetching(true);  
-    usersAPI.getUsers(pageNumber, this.props.pageSize)
+    newsAPI.getNews(pageNumber, this.props.pageSize)
            .then(data => { 
             this.props.toggleIsFetching(false);     
-            this.props.setUsers(data.items)});
+            this.props.setNews(data.articles)});
   }
 
 
@@ -32,14 +33,11 @@ class UsersAPIComponent extends React.Component {
     return <>
     {this.props.isFetching ? 
         <Preloader /> : null}
-     <Users totalUsersCount={this.props.totalUsersCount} 
+     <News totalNewsCount={this.props.totalNewsCount} 
                     pageSize={this.props.pageSize}
-                    currentPage={this.props.currentPage}
-                    users={this.props.users}
-                    follow={this.props.follow}
-                    unfollow={this.props.unfollow}
+                    currentNewsPage={this.props.currentNewsPage}
+                    news={this.props.news}
                     onPageChanged={this.onPageChanged}
-                    toggleFollowingProgress={this.props.toggleFollowingProgress}
                     followingInProgress={this.props.followingInProgress}
                     />
     </>
@@ -50,12 +48,11 @@ class UsersAPIComponent extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        news: state.newsPage.news,
+        pageSize: state.newsPage.pageSize,
+        totalNewsCount: state.newsPage.totalNewsCount,
+        currentNewsPage: state.newsPage.currentNewsPage,
+        isFetching: state.newsPage.isFetching,
     }
 }
 
@@ -83,15 +80,13 @@ let mapStateToProps = (state) => {
 // }
 
 
-let UsersContainer = connect(mapStateToProps,
-    {   follow,
-        unfollow,
-        setUsers,
-        setCurrentPage,
-        setTotalUsersCount,
+let NewsContainer = connect(mapStateToProps,
+    {  
+        setNews,
+        setCurrentNewsPage,
+        setTotalNewsCount,
         toggleIsFetching,
-        toggleFollowingProgress
     }
-    )(UsersAPIComponent);
+    )(NewsAPIComponent);
 
-export default UsersContainer;
+export default NewsContainer;
