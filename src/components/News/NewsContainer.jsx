@@ -9,7 +9,7 @@ class NewsAPIComponent extends React.Component {
 
  
   componentDidMount() {
-    this.props.toggleIsFetching(true);  
+    this.props.toggleIsFetching(true);    // TODO 1)Add thunk 
     newsAPI.getNews(this.props.currentNewsPage,this.props.pageSize)
               .then(data => {
               this.props.toggleIsFetching(false);  
@@ -18,7 +18,7 @@ class NewsAPIComponent extends React.Component {
           });
   }
 
-  onPageChanged = (pageNumber) => {
+  onPageChanged = (pageNumber) => {       // TODO 1)Add thunk 
     this.props.setCurrentNewsPage(pageNumber);
     this.props.toggleIsFetching(true);  
     newsAPI.getNews(pageNumber, this.props.pageSize)

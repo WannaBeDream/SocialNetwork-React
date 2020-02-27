@@ -20,7 +20,7 @@ let News = (props) => {
           </div>
           <hr/>
           {props.news.map(item => (
-            <div>
+            <div key={item.id}>
               <span>
                 <div>
                 author:{item.author}

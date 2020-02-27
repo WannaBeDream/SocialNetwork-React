@@ -13,7 +13,7 @@ class ProfileContainer extends React.Component {
     if (!userId) {
       userId = 2;
     }
-    usersAPI.getUserProfile(userId)
+    usersAPI.getUserProfile(userId)    // TODO 1)Add thunk 
            .then(response => {
               this.props.setUserProfile(response.data);
           });

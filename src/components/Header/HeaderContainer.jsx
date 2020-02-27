@@ -6,7 +6,7 @@ import {setAuthUserData} from './../../myRedux/auth-reducer';
 
 class HeaderContainer extends React.Component {
   
-  componentDidMount() {
+  componentDidMount() {    // TODO 1)Add thunk 
     authAPI.authMeWithCredentials()
            .then(response => {
              if(response.data.resultCode === 0) {

@@ -18,7 +18,7 @@ const newsReducer = (state = initialState, action) => {
             return { ...state, news: action.news }
         };
         case SET_CURRENT_NEWS_PAGE: {
-            return { ...state, currentNewsPage: action.currentPage }
+            return { ...state, currentNewsPage: action.currentNewsPage }
         };
         case SET_TOTAL_COUNT_NEWS: {
             return { ...state, totalNewsCount: action.count }
