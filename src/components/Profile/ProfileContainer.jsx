@@ -1,13 +1,11 @@
 import React from "react";
 import Profile from "./Profile";
-import {connect} from 'react-redux';
-import {getUserProfile} from './../../myRedux/profile-reducer';
-import {withRouter} from 'react-router-dom';
-import {withAuthRedirect} from './../../hoc/withAuthRedirect';
-
+import { connect } from "react-redux";
+import { getUserProfile } from "./../../myRedux/profile-reducer";
+import { withRouter } from "react-router-dom";
+import { withAuthRedirect } from "./../../hoc/withAuthRedirect";
 
 class ProfileContainer extends React.Component {
-
   componentDidMount() {
     let userId = this.props.match.params.userId;
     if (!userId) {
@@ -17,7 +15,6 @@ class ProfileContainer extends React.Component {
   }
 
   render() {
-    
     return (
       <div>
         <Profile {...this.props} profile={this.props.profile} />
@@ -28,19 +25,20 @@ class ProfileContainer extends React.Component {
 
 let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
 
-
-let mapStateToProps = (state) => ({
-  profile: state.profilePage.profile,
+let mapStateToProps = state => ({
+  profile: state.profilePage.profile
 });
 
 let withUrlDataContainerComponent = withRouter(AuthRedirectComponent);
 
 export default connect(mapStateToProps, {getUserProfile})(withUrlDataContainerComponent);
 
-
-
-// export default withAuthRedirect(
+// export default withAuthRedirect(                             // 1 вариант оборачивания контейнерами
 //   withRouter(
 //     connect(mapStateToProps, { getUserProfile })(ProfileContainer)
 //   )
+// );
+
+// export default connect(mapStateToProps, { getUserProfile })   // 2 вариант оборачивания контейнерами
+//               (withAuthRedirect(withRouter(ProfileContainer))
 // );
