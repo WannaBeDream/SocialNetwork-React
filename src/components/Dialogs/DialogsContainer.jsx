@@ -8,7 +8,8 @@ import { connect } from "react-redux";
 let mapStateToProps = state => {
   // есть доступ к стейту но не к стору
   return {
-    dialogsPage: state.dialogsPage // когда эта часть стейта изменится метод connect перерисует компоненту
+    dialogsPage: state.dialogsPage, // когда эта часть стейта изменится метод connect перерисует компоненту
+    isAuth: state.auth.isAuth
   };
 };
 

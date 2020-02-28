@@ -7,6 +7,7 @@ import { Route } from "react-router-dom";
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import NewsContainer from './components/News/NewsContainer';
+import LoginContainer from './components/Login/LoginContainer';
 
 const App = () => {
     return (<div className='app-wrapper'>
@@ -19,6 +20,7 @@ const App = () => {
             />} />
             <Route path='/users' render={() => <UsersContainer />} />
             <Route path='/news' render={() => <NewsContainer />} />
+            <Route path='/login' render={() => <LoginContainer />} />
         </div>
     </div>)
 }
