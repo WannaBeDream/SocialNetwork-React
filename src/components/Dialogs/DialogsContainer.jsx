@@ -4,32 +4,20 @@ import {
 } from "../../myRedux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import { connect } from "react-redux";
+import {withAuthRedirect} from "./../../hoc/withAuthRedirect";
 
 let mapStateToProps = state => {
   // есть доступ к стейту но не к стору
   return {
-    dialogsPage: state.dialogsPage, // когда эта часть стейта изменится метод connect перерисует компоненту
-    isAuth: state.auth.isAuth
+    dialogsPage: state.dialogsPage, 
   };
 };
 
-// // store.dispatch.bind(state); ~
-// let mapDispatchToProps = (dispatch) => {
-//   return {
-//     updateNewMessageBody: (body) => {
-//       dispatch(updateNewMessageBodyCreator(body));
-//     },
-//     sendMessage: () => {
-//       dispatch(sendMessageCreator());
-//     },
-//   }
-// }
+let AuthRedirectComponent = withAuthRedirect(Dialogs);
 
 const DialogsContainer = connect(mapStateToProps, {
   updateNewMessageBody,
   sendMessage
-})(Dialogs);
+})(AuthRedirectComponent);
 
-// connect возвращает новую контеййнерную компоненту
-// первые два аргумента connect возвращают обьекты которые попадают в пропсы
 export default DialogsContainer;
