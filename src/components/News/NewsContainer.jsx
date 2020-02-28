@@ -1,60 +1,44 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setNews, setCurrentNewsPage, setTotalNewsCount, toggleIsFetching } from "../../myRedux/news-reducer";
+import { getNews, changeCurrentPage } from "../../myRedux/news-reducer";
 import News from "./News";
-import Preloader from './../common/Preloader/Preloader';
-import {newsAPI} from './../../api/newsApi';
+import Preloader from "./../common/Preloader/Preloader";
 
 class NewsAPIComponent extends React.Component {
-
- 
   componentDidMount() {
-    this.props.toggleIsFetching(true);    // TODO 1)Add thunk 
-    newsAPI.getNews(this.props.currentNewsPage,this.props.pageSize)
-              .then(data => {
-              this.props.toggleIsFetching(false);  
-              this.props.setNews(data.articles);
-              this.props.setTotalNewsCount(data.totalResults)
-          });
+    this.props.getNews(this.props.currentNewsPage, this.props.pageSize);
   }
 
-  onPageChanged = (pageNumber) => {       // TODO 1)Add thunk 
-    this.props.setCurrentNewsPage(pageNumber);
-    this.props.toggleIsFetching(true);  
-    newsAPI.getNews(pageNumber, this.props.pageSize)
-           .then(data => { 
-            this.props.toggleIsFetching(false);     
-            this.props.setNews(data.articles)});
+  onPageChanged = pageNumber => {
+    this.props.changeCurrentPage(pageNumber, this.props.pageSize);
+  };
+
+  render() {
+    return (
+      <>
+        {this.props.isFetching ? <Preloader /> : null}
+        <News
+          totalNewsCount={this.props.totalNewsCount}
+          pageSize={this.props.pageSize}
+          currentNewsPage={this.props.currentNewsPage}
+          news={this.props.news}
+          onPageChanged={this.onPageChanged}
+          followingInProgress={this.props.followingInProgress}
+        />
+      </>
+    );
   }
-
-
-  render(){
-
-    return <>
-    {this.props.isFetching ? 
-        <Preloader /> : null}
-     <News totalNewsCount={this.props.totalNewsCount} 
-                    pageSize={this.props.pageSize}
-                    currentNewsPage={this.props.currentNewsPage}
-                    news={this.props.news}
-                    onPageChanged={this.onPageChanged}
-                    followingInProgress={this.props.followingInProgress}
-                    />
-    </>
-
-  }
-};
-
-
-let mapStateToProps = (state) => {
-    return {
-        news: state.newsPage.news,
-        pageSize: state.newsPage.pageSize,
-        totalNewsCount: state.newsPage.totalNewsCount,
-        currentNewsPage: state.newsPage.currentNewsPage,
-        isFetching: state.newsPage.isFetching,
-    }
 }
+
+let mapStateToProps = state => {
+  return {
+    news: state.newsPage.news,
+    pageSize: state.newsPage.pageSize,
+    totalNewsCount: state.newsPage.totalNewsCount,
+    currentNewsPage: state.newsPage.currentNewsPage,
+    isFetching: state.newsPage.isFetching
+  };
+};
 
 // let mapDispatchToProps = (dispatch) => {
 //     return {
@@ -79,14 +63,9 @@ let mapStateToProps = (state) => {
 //     }
 // }
 
-
-let NewsContainer = connect(mapStateToProps,
-    {  
-        setNews,
-        setCurrentNewsPage,
-        setTotalNewsCount,
-        toggleIsFetching,
-    }
-    )(NewsAPIComponent);
+let NewsContainer = connect(mapStateToProps, {
+  getNews,
+  changeCurrentPage
+})(NewsAPIComponent);
 
 export default NewsContainer;

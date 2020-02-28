@@ -15,7 +15,6 @@
     margin: 10px;
 }
 
-.loginBlock a {
+.loginBlock a, .loginBlock {
     color: white;
-    
 }

@@ -13,7 +13,7 @@ class UsersAPIComponent extends React.Component {
 
   }
 
-  onPageChanged = (pageNumber,) => {
+  onPageChanged = (pageNumber) => {
     this.props.changeCurrentPage(pageNumber, this.props.pageSize);
     
   }
