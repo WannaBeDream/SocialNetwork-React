@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { changeCurrentPageThunkCreator ,getUsersThunkCreator, follow, unfollow, setCurrentPage } from "../../myRedux/users-reducer";
+import { changeCurrentPageThunkCreator ,getUsersThunkCreator, follow, unfollow } from "../../myRedux/users-reducer";
 import Users from "./Users";
 import Preloader from './../common/Preloader/Preloader';
 
@@ -77,7 +77,6 @@ let mapStateToProps = (state) => {
 let UsersContainer = connect(mapStateToProps,
     {   follow,
         unfollow,
-        setCurrentPage,
         getUsers: getUsersThunkCreator,
         changeCurrentPage: changeCurrentPageThunkCreator
     }

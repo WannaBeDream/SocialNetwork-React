@@ -13,18 +13,6 @@ let mapStateToProps = state => {
   };
 };
 
-// store.dispatch.bind(state); ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// let mapDispatchToProps = dispatch => {
-//   return {
-//     addPost: () => {
-//       dispatch(addPostCreator());
-//     },
-//     updateNewPostText: text => {
-//       let action = updateNewPostTextCreator(text);
-//       dispatch(action);
-//     }
-//   };
-// };
 
 const MyPostsContainer = connect(mapStateToProps, 
     {
@@ -32,8 +20,6 @@ const MyPostsContainer = connect(mapStateToProps,
     updateNewPostText
     }
   )(MyPosts);
-
-
 
 
 // connect возвращает новую контеййнерную компоненту
