@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
-
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {                // TODO
     if(!props.profile) {
@@ -11,12 +11,13 @@ const ProfileInfo = (props) => {                // TODO
     return (
         <div>
             <div>
-                <img
-                    src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350'alt='404' />
+                {/* <img
+                    src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350'alt='404' /> */}
             </div>
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large} alt="404"/>  
-                <div>
+                <ProfileStatus status={"Hello world"} />
+                {/* <div>
                     <div>
                     {props.profile.fullName}
                     </div>
@@ -29,7 +30,7 @@ const ProfileInfo = (props) => {                // TODO
                     <div>
                         <a href={props.profile.contacts.github}>{props.profile.contacts.github}</a> 
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     )
