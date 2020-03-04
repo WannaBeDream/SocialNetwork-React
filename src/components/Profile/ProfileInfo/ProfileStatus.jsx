@@ -49,7 +49,7 @@ class ProfileStatus extends React.Component {
         ) : (
           <div>
             <span onDoubleClick={this.activateEditMode}>
-              {this.props.status || "everything awesome"}
+              {this.props.status || "everything is awesome"}
             </span>
           </div>
         )}

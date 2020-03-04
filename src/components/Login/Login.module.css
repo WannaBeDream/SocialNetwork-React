@@ -1,0 +1,32 @@
+.loginFormWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.loginFormTitle {
+    display: flex;
+    margin: 10px auto;
+    color: white;
+}
+.loginFormBorderHelper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+    width: 300px;
+    max-height: 500px;
+    border: 1px solid white;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.itemFormContainer {
+    margin: 3px;
+}
