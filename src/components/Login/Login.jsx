@@ -6,16 +6,16 @@ const LoginForm = props => {
   return (
     <form onSubmit={props.handleSubmit} className={styles.loginForm}>
       <div className={styles.itemFormContainer}>
-        <Field placeholder={"Login"} name={"login"} component={"input"} />
+        <Field placeholder={"Login"} name={"login"} component={"input"} className="form-control" />
       </div>
       <div className={styles.itemFormContainer}>
-        <Field placeholder={"Password"} name={"password"} component={"input"} />
+        <Field placeholder={"Password"} name={"password"} component={"input"} className="form-control" />
       </div>
       <div className={styles.itemFormContainer}>
         <Field component={"input"} name={"rememberMe"} type={"checkbox"} /> Remember me
       </div>
       <div className={styles.itemFormContainer}>
-        <button>Login</button>
+        <button className=" btn-primary">Sign in</button>
       </div>
     </form>
   );
@@ -26,9 +26,9 @@ const LoginReduxForm = reduxForm({
    form: "login"
 })(LoginForm);
 
-const Login = props => {
-   const onSubmit = (formData) => {
-   console.log("onSubmit -> formData", formData);
+const Login = props => {     // TODO
+   const onSubmit = (formData) => {      // TODO
+   console.log("Login -> onSubmit -> formData", formData);
 
 
    }
