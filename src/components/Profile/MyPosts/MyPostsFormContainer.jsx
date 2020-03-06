@@ -1,6 +1,11 @@
 import React from "react";
 import s from "./MyPosts.module.css";
 import { reduxForm, Field } from "redux-form";
+import {required, maxLengthCreator} from "./../../../utils/validators/validators";
+import {TextArea} from "./../../common/FormsControls/FormsControls";
+
+const maxLength10 = maxLengthCreator(10)
+
 
 let AddNewPostForm = props => {
   return (
@@ -8,8 +13,9 @@ let AddNewPostForm = props => {
       <div>
         <div className="form-group ml-5 mr-5 ">
           <Field
-            component={"textarea"}
+            component={TextArea}
             name={"newPostText"}
+            validate={[required, maxLength10]}
             className="form-control"
             rows="3"
             cols="1"
