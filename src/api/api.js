@@ -19,11 +19,11 @@ export const usersAPI = {
             });
     },
     userUnfollow(userId) {
-        return instance.delete(`follow/${userId}`)
+        return instance.delete(`follow/${userId}`);
 
     },
     userFollow(userId) {
-        return instance.post(`follow/${userId}`)
+        return instance.post(`follow/${userId}`);
     },
     getUserProfile(userId) {
         console.warn(" Obsolete method. Please profileAPI object. ")
@@ -33,23 +33,29 @@ export const usersAPI = {
 
 export const profileAPI = {
     getUserProfile(userId) {
-        return instance.get(`profile/${userId}`)
+        return instance.get(`profile/${userId}`);
     },
     getUserStatus(userId) {
-        return instance.get(`profile/status/${userId}`)
+        return instance.get(`profile/status/${userId}`);
     },
     updateUserStatus(status) {
         return instance.put(`profile/status`, {
             status: status
-        })    
+        });    
     }
 
 }
 
 export const authAPI = {
     authMeWithCredentials() {
-        return instance.get(`auth/me`)
-    }
+        return instance.get(`auth/me`);
+    },
+    login(email, password, rememberMe = false) {
+        return instance.post(`auth/login`, { email, password, rememberMe });
+    },
+    logout() {
+        return instance.delete(`auth/login`);
+    },
 }
 
 

@@ -17,7 +17,7 @@ const AddMessageForm = props => {
           placeholder={"Enter your message"}
           className={"form-control"}
           rows={"3"}
-          cols={"1"}
+          cols={"150"}
         />
       </div>
       <div>

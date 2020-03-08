@@ -18,7 +18,7 @@ let AddNewPostForm = props => {
             validate={[required, maxLength10]}
             className="form-control"
             rows="3"
-            cols="1"
+            cols="150"
           />
         </div>
       </div>

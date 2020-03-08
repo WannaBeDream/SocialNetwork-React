@@ -7,25 +7,26 @@ import {
   maxLengthCreator
 } from "./../../utils/validators/validators";
 
-const maxLength15 = maxLengthCreator(15);
+const maxLength30 = maxLengthCreator(30);
 
 const LoginForm = props => {
   return (
     <form onSubmit={props.handleSubmit} className={styles.loginForm}>
       <div className={styles.itemFormContainer}>
         <Field
-          validate={[required, maxLength15]}
-          placeholder={"Login"}
-          name={"login"}
+          validate={[required, maxLength30]}
+          placeholder={"Email"}
+          name={"email"}
           component={Input}
           className="form-control"
         />
       </div>
       <div className={styles.itemFormContainer}>
         <Field
-          validate={[required, maxLength15]}
+          validate={[required, maxLength30]}
           placeholder={"Password"}
           name={"password"}
+          type={"password"}
           component={Input}
           className="form-control"
         />
