@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Login.module.css";
+import formControlStyles from "./../common/FormsControls/FormsControls.module.css";
 import { reduxForm, Field } from "redux-form";
 import { Input } from "./../common/FormsControls/FormsControls";
 import {
@@ -39,6 +40,9 @@ const LoginForm = props => {
         />{" "}
         Remember me
       </div>
+     {props.error && <div className={formControlStyles.formSummaryError}>
+       {props.error}
+     </div>}
       <div className={styles.itemFormContainer}>
         <button className=" btn-primary">Sign in</button>
       </div>
