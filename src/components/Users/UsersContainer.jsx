@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { changeCurrentPageThunkCreator ,getUsersThunkCreator, follow, unfollow } from "../../myRedux/users-reducer";
+import { changeCurrentPage ,requestUsers , follow, unfollow } from "../../myRedux/users-reducer";
 import Users from "./Users";
 import Preloader from './../common/Preloader/Preloader';
-
+import {getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress} from './../../myRedux/users-selectors';
 
 
 class UsersAPIComponent extends React.Component {
@@ -39,18 +39,31 @@ class UsersAPIComponent extends React.Component {
 };
 
 
-let mapStateToProps = (state) => {
-    return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
-    }
+// let mapStateToProps = (state) => {  
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         followingInProgress: state.usersPage.followingInProgress
+//     }
+// }
+
+
+
+let mapStateToProps = (state) => {  
+  return {
+      users: getUsers(state),
+      pageSize: getPageSize(state),
+      totalUsersCount: getTotalUsersCount(state),
+      currentPage: getCurrentPage(state),
+      isFetching: getIsFetching(state),
+      followingInProgress: getFollowingInProgress(state),
+  }
 }
 
-// let mapDispatchToProps = (dispatch) => {
+// let mapDispatchToProps = (dispatch) => {   // 1 вариант(изначальный)
 //     return {
 //         follow: (userId) => {
 //             dispatch(followAC(userId))
@@ -77,8 +90,8 @@ let mapStateToProps = (state) => {
 let UsersContainer = connect(mapStateToProps,
     {   follow,
         unfollow,
-        getUsers: getUsersThunkCreator,
-        changeCurrentPage: changeCurrentPageThunkCreator
+        getUsers: requestUsers,  //санка
+        changeCurrentPage: changeCurrentPage,  //санка
     }
     )(UsersAPIComponent);
 
