@@ -1,4 +1,4 @@
-const UPDATE_SOMETHING = 'UPDATE-SOMETHING'
+const UPDATE_SOMETHING = 'socialNetwork/sidebar/UPDATE-SOMETHING'
 
 let initialState = {};
 

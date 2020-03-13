@@ -4,32 +4,28 @@ import Preloader from '../../common/Preloader/Preloader';
 import ProfileStatus from './ProfileStatus';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
-const ProfileInfo = (props) => {                // TODO
-    if(!props.profile) {
+const ProfileInfo = ({profile, status, updateUserStatus}) => {                // TODO
+    if(!profile) {
         return <Preloader />
     }
 
     return (
         <div>
-            <div>
-                {/* <img
-                    src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350'alt='404' /> */}
-            </div>
             <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.large} alt="404"/>  
-                <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateUserStatus} />
+                <img src={profile.photos.large} alt="404"/>  
+                <ProfileStatusWithHooks status={status} updateUserStatus={updateUserStatus} />
                 {/* <div>
                     <div>
-                    {props.profile.fullName}
+                    {profile.fullName}
                     </div>
                     <div>
-                    {props.profile.lookingForAJob}
+                    {profile.lookingForAJob}
                     </div>
                     <div>
-                    {props.profile.lookingForAJobDescription}
+                    {profile.lookingForAJobDescription}
                     </div>
                     <div>
-                        <a href={props.profile.contacts.github}>{props.profile.contacts.github}</a> 
+                        <a href={profile.contacts.github}>{profile.contacts.github}</a> 
                     </div>
                 </div> */}
             </div>

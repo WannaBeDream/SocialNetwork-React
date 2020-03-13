@@ -1,9 +1,9 @@
-import {newsAPI} from './../api/newsApi';
+import { newsAPI } from './../api/newsApi';
 
-const SET_NEWS = "SET_NEWS";
-const SET_CURRENT_NEWS_PAGE = "SET-CURRENT-PAGE";
-const SET_TOTAL_COUNT_NEWS = "SET_TOTAL_COUNT_NEWS";
-const TOGGLE_IS_FETCHING = "TOGGLE-IS-FETCHING";
+const SET_NEWS = "socialNetwork/news/SET_NEWS";
+const SET_CURRENT_NEWS_PAGE = "socialNetwork/news/SET-CURRENT-PAGE";
+const SET_TOTAL_COUNT_NEWS = "socialNetwork/news/SET_TOTAL_COUNT_NEWS";
+const TOGGLE_IS_FETCHING = "socialNetwork/news/TOGGLE-IS-FETCHING";
 
 
 let initialState = {
@@ -42,25 +42,24 @@ export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isF
 
 export const getNews = (currentNewsPage, pageSize) => {
 
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleIsFetching(true));
-        newsAPI.getNews(currentNewsPage, pageSize)
-            .then(data => {
-                dispatch(toggleIsFetching(false));
-                dispatch(setNews(data.articles));
-                dispatch(setTotalNewsCount(data.totalResults))
-            });
+        let data = await newsAPI.getNews(currentNewsPage, pageSize);
+        dispatch(toggleIsFetching(false));
+        dispatch(setNews(data.articles));
+        dispatch(setTotalNewsCount(data.totalResults))
+
     }
 }
 export const changeCurrentPage = (pageNumber, pageSize) => {
 
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setCurrentNewsPage(pageNumber));
-        dispatch(toggleIsFetching(true));  
-        newsAPI.getNews(pageNumber, pageSize)
-               .then(data => { 
-                dispatch(toggleIsFetching(false));     
-                dispatch(setNews(data.articles))});
+        dispatch(toggleIsFetching(true));
+        let data = await newsAPI.getNews(pageNumber, pageSize);
+        dispatch(toggleIsFetching(false));
+        dispatch(setNews(data.articles))
+
     }
 }
 
