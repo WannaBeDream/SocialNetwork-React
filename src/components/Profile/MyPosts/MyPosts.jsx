@@ -5,7 +5,7 @@ import AddNewPostFormRedux from "./MyPostsFormContainer";
 
 let MyPosts = React.memo(props => {
 
-  let postsElements = props.posts.map(p => (
+  let postsElements = [...props.posts].reverse().map(p => (
     <Post message={p.message} likesCount={p.likesCount} />
   ));
 
