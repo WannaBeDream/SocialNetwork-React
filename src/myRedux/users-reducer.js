@@ -23,7 +23,7 @@ const usersReducer = (state = initialState, action) => {
         case FOLLOW_FRIEND:
             return {
                 ...state,
-                users: UpdateObjectInArray(state.users, action.userId, "id", { followerd: true })
+                users: UpdateObjectInArray(state.users, action.userId, "id", { followed: true })
                 // users: state.users.map((user) => {
                 //     if (user.id === action.userId) {
                 //         return { ...user, followed: true }
@@ -35,7 +35,7 @@ const usersReducer = (state = initialState, action) => {
         case UNFOLLOW_FRIEND:
             return {
                 ...state,
-                users: UpdateObjectInArray(state.users, action.userId, "id", { followerd: false })
+                users: UpdateObjectInArray(state.users, action.userId, "id", { followed: false })
             };
         case SET_USERS: {
             return { ...state, users: action.users }
