@@ -13,6 +13,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import Preloader from './components/common/Preloader/Preloader';
+import store from './myRedux/redux-store';
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from 'react-redux';
 
 class App extends React.Component {
 
@@ -51,7 +54,18 @@ const mapStateToProps = (state) => ({
     initialized: state.app.initialized
 })
 
-export default compose(  // withRouter подключили из-за того что роуты не будут работать с законекченой компонентой
+let AppContainer = compose(  // withRouter подключили из-за того что роуты не будут работать с законекченой компонентой
     withRouter,
     connect(mapStateToProps, { initializeApp })
 )(App);
+
+
+let MainApp = (props) => {
+    return (<BrowserRouter>
+        <Provider store={store}>
+            <AppContainer />
+        </Provider >
+    </BrowserRouter>)
+}
+
+export default MainApp;
