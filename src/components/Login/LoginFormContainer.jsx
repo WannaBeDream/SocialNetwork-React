@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Login.module.css";
 import formControlStyles from "./../common/FormsControls/FormsControls.module.css";
 import { reduxForm } from "redux-form";
+// import { reduxForm } from 'redux-form/immutable'
 import { Input } from "./../common/FormsControls/FormsControls";
 import {
   required,

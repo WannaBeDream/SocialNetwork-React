@@ -3,6 +3,7 @@ import s from "./Dialogs.module.css";
 import { reduxForm, Field } from "redux-form";
 import {required, maxLengthCreator} from "./../../utils/validators/validators";
 import {TextArea} from "./../common/FormsControls/FormsControls";
+// import { Field, reduxForm } from 'redux-form/immutable'
 
 const maxLength50 = maxLengthCreator(50)
 

@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./MyPosts.module.css";
 import { reduxForm, Field } from "redux-form";
+// import { Field, reduxForm } from 'redux-form/immutable'
 import {required, maxLengthCreator} from "./../../../utils/validators/validators";
 import {TextArea} from "./../../common/FormsControls/FormsControls";
 
