@@ -15,12 +15,15 @@ let Paginator = ({ totalItemsCount, pageSize, currentPage, onPageChanged, portio
   let rightPortionPageNumber = portionNumber * portionSize;
 
   return (
-    <div className={styles.paginator}>
-      {portionNumber > 1 && 
-      <button onClick={() => {setPortionNumber(portionNumber - 1)}} >previus</button>  }
+    
+      <div className={styles.paginator}>
+        <div className={styles.paginatorContainer}>
+        {portionNumber > 1 && 
+          <button className={"btn-primary"} onClick={() => {setPortionNumber(portionNumber - 1)}} >prev</button>  }
 
-      {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber).map(page => {
-        return (
+          {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber).map(page => {
+          return (
+          <div>
           <span
             className={ cn({
               [styles.selectedPage]: currentPage === page
@@ -32,12 +35,14 @@ let Paginator = ({ totalItemsCount, pageSize, currentPage, onPageChanged, portio
           >
             {page}
           </span>
+          </div>
         );
       })}
+      
    {portionCount > portionNumber && 
-      <button onClick={() => {setPortionNumber(portionNumber + 1)}} >next</button>  }
+      <button className={"btn-primary"} onClick={() => {setPortionNumber(portionNumber + 1)}} >next</button>  }
 
-
+      </div>
     </div>
   );
 };

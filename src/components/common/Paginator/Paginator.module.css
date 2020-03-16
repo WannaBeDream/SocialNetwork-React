@@ -12,3 +12,10 @@
   padding: 2px;
   border: 1px solid blue;
 }
+
+.paginatorContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+}

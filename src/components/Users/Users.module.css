@@ -12,3 +12,9 @@ span {
     color: red;
     font-weight: bold;
 }
+
+.userItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
