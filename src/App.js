@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
-import ProfileContainer from './components/Profile/ProfileContainer';
+// import ProfileContainer from './components/Profile/ProfileContainer';
 import { Route } from "react-router-dom";
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
-import NewsContainer from './components/News/NewsContainer';
+// import NewsContainer from './components/News/NewsContainer';
 import LoginContainer from './components/Login/LoginContainer';
 import { initializeApp } from './myRedux/app-reducer';
 import { connect } from 'react-redux';
@@ -14,8 +14,13 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import Preloader from './components/common/Preloader/Preloader';
 import store from './myRedux/redux-store';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { withSuspense } from './hoc/withSuspense';
+
+const NewsContainerWithLazy = React.lazy(() => import('./components/News/NewsContainer'));
+const ProfileContainerWithLazy = React.lazy(() => import('./components/Profile/ProfileContainer'));
+const UsersContainerWithLazy = React.lazy(() => import('./components/Users/UsersContainer'));
 
 class App extends React.Component {
 
@@ -37,10 +42,15 @@ class App extends React.Component {
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <DialogsContainer
                     />} />
-                    <Route path='/profile/:userId?' render={() => <ProfileContainer
-                    />} />
-                    <Route path='/users' render={() => <UsersContainer />} />
-                    <Route path='/news' render={() => <NewsContainer />} />
+                    <Route path='/profile/:userId?' render={
+                        withSuspense(ProfileContainerWithLazy)
+                    } />
+                    <Route path='/users' render={
+                        withSuspense(UsersContainerWithLazy)
+                    } />
+                    <Route path='/news' render={
+                        withSuspense(NewsContainerWithLazy)
+                    } />
                     <Route path='/login' render={() => <LoginContainer />} />
                 </div>
             </div>
