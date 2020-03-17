@@ -5,7 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 // import ProfileContainer from './components/Profile/ProfileContainer';
 import { Route } from "react-router-dom";
 import DialogsContainer from './components/Dialogs/DialogsContainer';
-import UsersContainer from './components/Users/UsersContainer';
+// import UsersContainer from './components/Users/UsersContainer';
 // import NewsContainer from './components/News/NewsContainer';
 import LoginContainer from './components/Login/LoginContainer';
 import { initializeApp } from './myRedux/app-reducer';
