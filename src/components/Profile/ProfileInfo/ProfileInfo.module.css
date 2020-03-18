@@ -11,3 +11,8 @@
     margin: 6px 2px ;
     text-align: center;
 }
+
+.contact {
+    padding-left: 10px;
+    border:1px solid white;
+}
