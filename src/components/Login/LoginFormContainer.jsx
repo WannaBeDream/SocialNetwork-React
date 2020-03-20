@@ -8,11 +8,11 @@ import {
   required,
   maxLengthCreator
 } from "./../../utils/validators/validators";
-import {createField} from "./../../components/common/FormsControls/FormsControls";
+import { createField } from "./../../components/common/FormsControls/FormsControls";
 
 const maxLength30 = maxLengthCreator(30);
 
-const LoginForm = ({ handleSubmit, error }) => {
+const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
   return (
     <form onSubmit={handleSubmit} className={styles.loginForm}>
       {createField(
@@ -43,6 +43,19 @@ const LoginForm = ({ handleSubmit, error }) => {
         { type: "checkbox" },
         "Remember me"
       )}
+
+      {captchaUrl && <img src={captchaUrl} />}
+      {captchaUrl &&
+        createField(
+          null,
+          [required, maxLength30],
+          "Symbols from image",
+          "captcha",
+          Input,
+          null,
+          {}
+        )}
+
       {error && (
         <div className={formControlStyles.formSummaryError}>{error}</div>
       )}

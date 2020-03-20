@@ -10,7 +10,7 @@ const Login = props => {
   const onSubmit = formData => {
     // TODO
     console.log("Login -> onSubmit -> formData", formData);
-    props.login(formData.email, formData.password, formData.rememberMe);
+    props.login(formData.email, formData.password, formData.rememberMe, formData.captcha);
   };
 
   if(props.isAuth) {
@@ -21,14 +21,16 @@ const Login = props => {
     <div className={styles.loginFormWrapper}>
       <div className={styles.loginFormBorderHelper}>
         <h1 className={styles.loginFormTitle}>Login</h1>
-        <LoginReduxForm onSubmit={onSubmit} />
+        <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
       </div>
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-  isAuth: state.auth.isAuth
+  isAuth: state.auth.isAuth,
+  captchaUrl: state.auth.captchaUrl,
+
 });
 
 
