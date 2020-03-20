@@ -14,7 +14,7 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import Preloader from './components/common/Preloader/Preloader';
 import store from './myRedux/redux-store';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { withSuspense } from './hoc/withSuspense';
 
@@ -24,34 +24,36 @@ const UsersContainerWithLazy = React.lazy(() => import('./components/Users/Users
 
 class App extends React.Component {
 
+
     componentDidMount() {
         this.props.initializeApp();
     }
-
 
     render() {
         if (!this.props.initialized) {
             return <Preloader />
 
         }
-
+                                    // exact атрибут роута тоже самое что и компонент Switch
         return (
             <div className='app-wrapper'>
                 <HeaderContainer />
                 <Navbar />
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <DialogsContainer
-                    />} />
-                    <Route path='/profile/:userId?' render={
-                        withSuspense(ProfileContainerWithLazy)
-                    } />
-                    <Route path='/users' render={
-                        withSuspense(UsersContainerWithLazy)
-                    } />
-                    <Route path='/news' render={
-                        withSuspense(NewsContainerWithLazy)
-                    } />
-                    <Route path='/login' render={() => <LoginContainer />} />
+                    <Switch>
+
+                        <Route exact path='/' render={ () => <Redirect to={"/profile"} /> } />
+                        <Route path='/dialogs' render={() => <DialogsContainer />} />
+                        <Route path='/profile/:userId?' render={ withSuspense(ProfileContainerWithLazy) } />
+                        <Route path='/users' render={ withSuspense(UsersContainerWithLazy) } />
+                        <Route path='/news' render={ withSuspense(NewsContainerWithLazy) } />
+                        <Route path='/login/facebook' render={() => <div>Facebook</div>} />
+                        <Route path='/login' render={() => <LoginContainer />} />
+
+
+                        <Route path='*' render={() => <div>404 NOT FOUND</div>} />
+                   
+                    </Switch>  
                 </div>
             </div>
 
