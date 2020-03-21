@@ -4,7 +4,7 @@ import Preloader from "../../common/Preloader/Preloader";
 // import ProfileStatus from './ProfileStatus';
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "./../../../assets/images/user.png";
-import ProfileDataForm from "./ProfileDataForm";
+import ProfileDataReduxForm from "./ProfileDataForm";
 
 const ProfileInfo = ({
   profile,
@@ -44,7 +44,7 @@ const ProfileInfo = ({
         />
         {isOwner && <input type={"file"} onChange={onMainPhotoSelected} />}
 
-        { editMode ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit} /> : <ProfileData toEditMode={ () => {
+        { editMode ? <ProfileDataReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit} /> : <ProfileData toEditMode={ () => {
             setEditMode(true);
         }} profile={profile}  isOwner={isOwner}/>}
         <ProfileStatusWithHooks
