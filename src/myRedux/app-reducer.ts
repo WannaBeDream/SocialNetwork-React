@@ -26,7 +26,7 @@ type InitializedSuccessActionType = {
     type: typeof INITIALIZED_SUCCESS // typeof вернет "socialNetwork/app/INITIALIZED-SUCCESS"
 }
 
-export const initializedSuccess = ():InitializedSuccessActionType => (
+export const initializedSuccess = (): InitializedSuccessActionType => (
     { type: INITIALIZED_SUCCESS }
 );
 
