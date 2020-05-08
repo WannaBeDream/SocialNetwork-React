@@ -24,7 +24,7 @@ type MapDispatchPropsType = {
   getUsers: (currentPage: number, pageSize: number) => void
   changeCurrentPage: (pageNumber: number, pageSize: number) => void
 }
-type OwnPropsType = {
+type OwnPropsType = {  // то что стандартно прокинулось
   pageTitle: string
 }
 

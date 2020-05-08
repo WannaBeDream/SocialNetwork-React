@@ -6,6 +6,8 @@ import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "./../../../assets/images/user.png";
 import ProfileDataReduxForm from "./ProfileDataForm";
 
+
+
 const ProfileInfo = ({
   profile,
   status,

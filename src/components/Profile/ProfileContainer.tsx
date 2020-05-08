@@ -11,8 +11,32 @@ import {
 import { withRouter } from "react-router-dom";
 import { withAuthRedirect } from "./../../hoc/withAuthRedirect";
 import { compose } from "redux";
+import { ProfileType,PhotosType } from "../../types/types";
+import { AppStateType } from "../../myRedux/redux-store";
 
-class ProfileContainer extends React.Component {
+type MapStatePropsType = {  // TODO me
+  match?: any  
+  history?: any
+
+  authorizedUserId: number | null
+  profile: ProfileType | null
+  status: string
+  isAuth: boolean
+}
+type MapDispatchPropsType = {  // TODO me
+  getUserProfile: (userId: number) => void
+  getUserStatus: (userId: number) => void
+  updateUserStatus: (newStatus: string) => void
+  savePhoto: (newPhoto: PhotosType) => void
+  saveProfile: (newProfile: ProfileType) => void
+}
+type OwnPropsType = {  // то что стандартно прокинулось
+ 
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
+
+class ProfileContainer extends React.Component<PropsType> {
 
   refreshProfile() {
     let userId = this.props.match.params.userId;
@@ -30,7 +54,7 @@ class ProfileContainer extends React.Component {
     this.refreshProfile();
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps: MapStatePropsType, prevState: AppStateType) {  // TODO
     if(this.props.match.params.userId != prevProps.match.params.userId) {
       this.refreshProfile();
     }
@@ -53,15 +77,19 @@ class ProfileContainer extends React.Component {
   }
 }
 
-let mapStateToProps = state => ({
+let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
   profile: state.profilePage.profile,
   status: state.profilePage.status,
   authorizedUserId: state.auth.userId,
   isAuth: state.auth.isAuth,
 });
 
+// TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultRootState
+
 export default compose(
-  connect(mapStateToProps, { getUserProfile, getUserStatus, updateUserStatus, savePhoto, saveProfile }),
+  connect<MapStatePropsType,MapDispatchPropsType,OwnPropsType,AppStateType>
+  (mapStateToProps, 
+    { getUserProfile, getUserStatus, updateUserStatus, savePhoto, saveProfile }),
   withRouter,
   // withAuthRedirect   // защита аунтефикация
 )(ProfileContainer);

@@ -3,13 +3,36 @@ import { connect } from "react-redux";
 import { getNews, changeCurrentPage } from "../../myRedux/news-reducer";
 import News from "./News";
 import Preloader from "./../common/Preloader/Preloader";
+import { NewsType } from "../../types/types";
+import { AppStateType } from "../../myRedux/redux-store";
 
-class NewsAPIComponent extends React.Component {
+
+
+type MapStatePropsType = { // TODO me
+  news: Array<NewsType>
+  pageSize: number
+  totalNewsCount: number
+  currentNewsPage: number
+  isFetching: boolean
+
+
+}
+type MapDispatchPropsType = {
+  getNews: (currentNewsPage: number, pageSize: number)=> void
+  changeCurrentPage: (pageNumber: number, pageSize: number) => void
+}
+type OwnPropsType = {  // то что стандартно прокинулось
+  
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
+
+class NewsAPIComponent extends React.Component<PropsType> {
   componentDidMount() {
     this.props.getNews(this.props.currentNewsPage, this.props.pageSize);
   }
 
-  onPageChanged = pageNumber => {
+  onPageChanged = (pageNumber: number) => {
     this.props.changeCurrentPage(pageNumber, this.props.pageSize);
   };
 
@@ -23,14 +46,13 @@ class NewsAPIComponent extends React.Component {
           currentNewsPage={this.props.currentNewsPage}
           news={this.props.news}
           onPageChanged={this.onPageChanged}
-          followingInProgress={this.props.followingInProgress}
         />
       </>
     );
   }
 }
 
-let mapStateToProps = state => {
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
     news: state.newsPage.news,
     pageSize: state.newsPage.pageSize,
@@ -40,9 +62,14 @@ let mapStateToProps = state => {
   };
 };
 
-let NewsContainer = connect(mapStateToProps, {
+// TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultRootState
+
+let NewsContainer = connect<MapStatePropsType,MapDispatchPropsType,OwnPropsType,AppStateType>
+(mapStateToProps, 
+  {
   getNews,
   changeCurrentPage
-})(NewsAPIComponent);
+  }
+)(NewsAPIComponent);
 
 export default NewsContainer;
